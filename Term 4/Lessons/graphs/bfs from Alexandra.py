@@ -12,8 +12,6 @@ def bfs(graph, start):
             if u not in visited:
                 visited.append(u)
                 queue.append(u)
-
-                
     return print(queue)
 
 
@@ -81,7 +79,6 @@ def path(graph, start,end):
         end=par
     return print(p[::-1])
         
-        
 def vertex_on_path(graph, start, end, x):
     start_dist=bfs_dist(graph,start)
     end_dist=bfs_dist(graph,end)
@@ -98,7 +95,7 @@ def edge_on_path(graph, start, end, edge):
     else:
         print('The edge is not on the shortest path')
         
-gr={
+gr = {
     'A':['B'],
     'B':['A','C', 'D'],
     'C':['B','D','E'],
