@@ -69,6 +69,7 @@ def bfs_parent(graph, start):
                 
     return parent
 
+
 def path(graph, start,end):
     parents=bfs_parent(graph,start)
     p=[]
