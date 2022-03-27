@@ -1,4 +1,4 @@
-# Дополнительная практика
+# Источник кода
 # https://pimiento.github.io/python_graphs.html
 # 
 '''
@@ -8,9 +8,9 @@
 
 Плотный граф - граф, имеющий число ребер близкое к максимально возможному с его числом вершин.
 
-Разряженный граф - граф, имеющий малое число ребер.
+Разряженный граф - граф, в котором число ребер далеко от максимального.
 
-Будем использовать второй способ.
+Будем использовать второй способ, т.к. наш граф - разряженный
 '''
 
 # Граф в виде списков связностей
@@ -23,22 +23,9 @@ graph = {
 'F': ['C', 'E']
 }
 
-# Поиск в глубину
-def dfs(graph, start):
-    visited, stack = [], [start]
-    while stack:
-        vertex = stack.pop()
-        if vertex not in visited:
-            visited.append(vertex)
-            stack.extend(set(graph[vertex]) - set(visited))
-    return visited
-
-# print(dfs(graph, 'A'))
-
-
-
-# Поиск в ширину
+# Поиск в ширину на деке и множествах
 from queue import deque
+
 def bfs(graph, start):
     visited, queue = [], deque([start])
     while queue:
@@ -49,3 +36,5 @@ def bfs(graph, start):
     return visited
 
 print(bfs(graph, 'A'))
+# Здесь алгоритм BFS написан с использованием множеств.
+# В связи с этим порядок вывода каждый раз разный (множество - неупор. структура данных)
