@@ -27,8 +27,6 @@ currencies_exchange_anomaly = {
 '''
 Этот код выдаёт максимальные суммы денег, которые можно получить 
 конвертацией исходной валюты во все остальные валюты.
-
-Без просмотра вершин по несколько раз!
 '''
 def deikstra (start_vertex, money, G):
     distances = {} # расстояние от начальной вершины
@@ -44,40 +42,29 @@ def deikstra (start_vertex, money, G):
 
             # Если расстояние до смежной вершины не определено
             if (neighbor not in distances):
-                distances[neighbor] = distances[cur_vertex] * G[cur_vertex][neighbor]
-                queue.append(neighbor)
+                distances[neighbor] = distances[cur_vertex] * G[cur_vertex][neighbor] # Конвертация в другую валюту
+                queue.append(neighbor) # Полученную валюту также нужно попробовать конвертировать
+
             # ИЛИ если расстояние до смежной вершины найдено больше (более выгодная конвертация)
             elif (distances[cur_vertex] * G[cur_vertex][neighbor] > distances[neighbor]):
                 distances[neighbor] = distances[cur_vertex] * G[cur_vertex][neighbor]
                 queue.append(neighbor)
     return distances # Расстояния - результаты перевода денег
 
-
-
 currency = 'Rub'
 money = 1
 desired_currency = 'GPB'
 best_transaction_result = 0
 
-# Можно ли получить больше денег, чем имеется?
-# transaction_1 = deikstra(currency, money, currencies_exchange_anomaly)
-# print(transaction_1)
-# for key in transaction_1:
-#     if transaction_1[key] == inf:
-#         print("Аномалия!")
-#         exit()
+# Можно ли получить больше денег, чем имеется? # currencies_exchange_anomaly - будет аномалия
+max_results = deikstra(currency, money, currencies_exchange)
+for key in max_results:
+    if max_results[key] == inf:
+        print("Аномалия! Конвертируя деньги можно получить больше, чем имеется!")
+        exit()
 
+# Результат самой выгодной конвертации в заданную валюту
+print(f"Из {money} {currency} можно получить максимум {max_results[desired_currency]} {desired_currency}")
+print("Для этого нужно сделать следующие конвертации")
 
-while True:
-    # 1 конвертация
-    dict1 = deikstra(currency, money, currencies_exchange) # Получаю словарь
-    best_transaction_result = dict1[desired_currency]
-    # Euro to everything except Rub
-    dict2 = deikstra('Euro', dict1['Euro'], currencies_exchange)
-
-    if dict2[desired_currency] > best_transaction_result:
-        best_transaction_result = dict2[desired_currency]
-
-# # {'Rub': 0, 'Dollar': 0.0096, 'Euro': 0.0087, 'GPB': 0.0072} - результат
-# print(deikstra('Dollar', 0.0096, currencies_exchange))
 
