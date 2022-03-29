@@ -87,8 +87,8 @@ def bfs_parent(graph, start):
         for u in graph[cur]: # Проход по всем смежным вершинам с текущей (cur)
             if u not in visited:
                 visited.append(u) # Посетили
-                queue.append(u) # Нужно посетить её соседей
-                parent[u] = cur # Из какой вершины пришли в эту
+                queue.append(u)   # Нужно посетить её соседей
+                parent[u] = cur   # Из какой вершины пришли в эту
                 
     return parent
 
@@ -158,6 +158,7 @@ gr = {
 # print(bfs_parent(graph, 'A')) +
 # print(shortest_path(graph,'A','E')) +
 # print(vertex_on_shortest_path(graph, 'A', 'E', 'D')) +
-print(edge_on_shortest_path(gr, 'A', 'C', 'BC'))
+# print(edge_on_shortest_path(gr, 'A', 'C', 'BC')) +
+
 
 

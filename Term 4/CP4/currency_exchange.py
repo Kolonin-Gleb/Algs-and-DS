@@ -13,7 +13,7 @@ currencies_exchange = {
     'Rub': {'Dollar':0.0096, 'Euro':0.0087, 'GPB':0.0072},
     'Dollar':{'Rub':100.9, 'Euro':0.9, 'GPB':0.75},
     'Euro':{'Rub':110.5, 'Dollar':1.1, 'GPB':0.83},
-    'GPB':{'Rub':135, 'Dollar':0.7, 'Euro':0.83}
+    'GPB':{'Rub':135, 'Dollar':1.3, 'Euro':0.83}
 }
 
 # С данным графом меняя валюту можно получить больше, чем было из-за ('Dollar':2.1)
@@ -21,14 +21,20 @@ currencies_exchange_anomaly = {
     'Rub': {'Dollar':0.0096, 'Euro':0.0087, 'GPB':0.0072},
     'Dollar':{'Rub':100.9, 'Euro':0.9, 'GPB':0.75},
     'Euro':{'Rub':110.5, 'Dollar':2.1, 'GPB':0.83},
-    'GPB':{'Rub':135, 'Dollar':0.7, 'Euro':0.83}
+    'GPB':{'Rub':135, 'Dollar':1.3, 'Euro':0.83}
 }
 
 '''
 Этот код выдаёт максимальные суммы денег, которые можно получить 
 конвертацией исходной валюты во все остальные валюты.
 '''
+parents = {} # словарь родителей вершин
 def deikstra (start_vertex, money, G):
+
+    # Изначально родители вершин - неопределены
+    for v in G:
+        parents[v]=None
+
     distances = {} # расстояние от начальной вершины
     distances[start_vertex] = money # Переводим 1 условную единицу (Сумма входной валюты)
 
@@ -44,11 +50,14 @@ def deikstra (start_vertex, money, G):
             if (neighbor not in distances):
                 distances[neighbor] = distances[cur_vertex] * G[cur_vertex][neighbor] # Конвертация в другую валюту
                 queue.append(neighbor) # Полученную валюту также нужно попробовать конвертировать
+                parents[neighbor] = cur_vertex # Сохраняем родителя
 
             # ИЛИ если расстояние до смежной вершины найдено больше (более выгодная конвертация)
             elif (distances[cur_vertex] * G[cur_vertex][neighbor] > distances[neighbor]):
                 distances[neighbor] = distances[cur_vertex] * G[cur_vertex][neighbor]
                 queue.append(neighbor)
+                parents[neighbor] = cur_vertex # Сохраняем родителя
+
     return distances # Расстояния - результаты перевода денег
 
 currency = 'Rub'
@@ -67,4 +76,12 @@ for key in max_results:
 print(f"Из {money} {currency} можно получить максимум {max_results[desired_currency]} {desired_currency}")
 print("Для этого нужно сделать следующие конвертации")
 
+# Поскольку обмен туда-обратно не выгоден, для совершения самого выгодного перевода 
+# число переводов <= количество доступных для обмена валют - 1
+transactions_order = []
+transactions_order.append(desired_currency)
+for _ in range(len(currencies_exchange) - 1):
+    transactions_order.append(parents[transactions_order[-1]])
+
+print(transactions_order[::-1])
 
