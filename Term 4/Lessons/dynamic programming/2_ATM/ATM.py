@@ -14,8 +14,8 @@ sum = 120 # Сумма для размена
 best_exchanges = [math.inf] * (sum + 1)
 best_exchanges[0] = 0
 best_exchanges[10] = 1
-# best_exchanges[60] = 1
-# best_exchanges[100] = 1
+best_exchanges[60] = 1
+best_exchanges[100] = 1
 
 def ATM_min_exchange(banknotes, best_exchanges, sum):
 	# Если лучший исход для запрашиваемой суммы ещё не определён
@@ -41,3 +41,4 @@ print(ATM_min_exchange(banknotes, best_exchanges, sum))
 
 print(best_exchanges)
 
+# TODO: Как усовершенствовать программу, чтобы определить какие купюры нужно давать?
