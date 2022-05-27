@@ -15,7 +15,7 @@
 
 import timeit
 
-''' Разделяй и властвуй Фибоначи '''
+''' Обычная рекурсия / Разделяй и властвуй '''
 def fib(n):
     if n < 0:
         return "error!"
@@ -30,9 +30,9 @@ def fib(n):
 # print(timeit.timeit('fib(20)', number=100, globals=globals())) # 2.0884038
 # print(timeit.timeit('fib(25)', number=100, globals=globals())) # 22.901690300000002
 
-''' Динамическое решение с сохранением '''
+''' Рекурсия с запоминанием '''
 
-M = {0: 0, 1: 1} # Сразу храним резултаты для первых чисел 
+M = {0: 0, 1: 1} # Сразу храним результаты для первых чисел 
 
 def fib2(n):
     if n in M:
@@ -43,13 +43,26 @@ def fib2(n):
 # Тест хранения значений в словаре
 # cache = {}
 # cache[0] = 1
-
 # print(cache)
 
 # print(fib2(10)) # Вывод вычисленного значения последовательности ДЛЯ ПРОВЕРКИ
 # print(timeit.timeit('fib2(10)', number=100, globals=globals())) # 0.00019780000000002573
 # print(timeit.timeit('fib2(20)', number=100, globals=globals())) # 0.00011420000000006425
 # print(timeit.timeit('fib2(25)', number=100, globals=globals())) # 0.00010189999999998811
+
+''' Динамическое программирование '''
+
+def fib4(n):
+    a = 0
+    b = 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+print(fib4(10))
+# print(timeit.timeit('fib4(10)', number=100, globals=globals())) # 0.0005650000000000377
+# print(timeit.timeit('fib4(20)', number=100, globals=globals())) # 0.0008983999999999659
+# print(timeit.timeit('fib4(25)', number=100, globals=globals())) # 0.0010902999999999885
 
 ''' Восходящая реализация '''
 # Подсчёт всех чисел по порядку с сохранением.
@@ -64,8 +77,3 @@ def fib3(n):
 # print(timeit.timeit('fib3(10)', number=100, globals=globals())) # 0.0008586000000000427
 # print(timeit.timeit('fib3(20)', number=100, globals=globals())) # 0.0009177999999999686
 # print(timeit.timeit('fib3(25)', number=100, globals=globals())) # 0.0011250000000000426
-
-
-
-# Задача по количеству маршрутов
-
