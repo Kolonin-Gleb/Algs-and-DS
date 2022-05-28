@@ -1,9 +1,11 @@
 # ЭТОТ КОД НУЖНО ПЕРЕПИСАТЬ!
 # Я НЕ ЧИСЛО СПОСОБОВ ДОЛЖЕН ОПРЕДЕЛИТЬ, А СТОИМОСТИ КАЖДОГО СПОСОБА!
 
+import math
 
 # ways_to_come - кол. способов прийти в те элементы, до которых можно допрыгнуть
 ways_to_come = [1, 1, 1]
+price_to_come = [-math.inf] * (len(ways_to_come))
 
 count_of_prev_elements = 0
 for i in range(len(ways_to_come)):
@@ -12,6 +14,7 @@ for i in range(len(ways_to_come)):
 	while True: # Суммирую кол. способов добраться до пред эл.
 		if i == 0:
 			ways_to_come[i] = 1
+			price_to_come[i] = 
 			break
 		else:
 			ways_to_come[i] += ways_to_come[count_of_prev_elements]
