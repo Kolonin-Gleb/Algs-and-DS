@@ -1,0 +1,24 @@
+    #for price in range(len(price_to_come)):
+    #    pass
+
+	# Рассмотрим все способы попасть в позицию
+	#for banknote in banknotes:
+	#	try:
+	#		# Попытка выдать сумму используя купюру banknote
+	#		pos_best_exchanges.append(best_exchanges[sum_for_exchange - banknote])
+	#	except:
+	#		continue
+
+	#best_exchanges[sum_for_exchange] = min(pos_best_exchanges) + 1 # +1, т.к. для выдачи нужна будет ещё 1 купюра
+	##return best_exchanges[sum]
+
+
+# def grasshopper(n):
+#     grasshopper=[1, 0, 1] # База
+
+#     for i in range(3, n+1): # n + 1 - чтобы включить n
+#         grasshopper.append(grasshopper[i-2] + grasshopper[i-3]) # Рек. формула. Значения сохраняются, что ускоряет работу программы
+
+#     return grasshopper[n]
+
+# print(grasshopper(6))
