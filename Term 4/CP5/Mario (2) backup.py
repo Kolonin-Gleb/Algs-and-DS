@@ -60,12 +60,12 @@ def price_to_get(cur_position, target_position, k, prices):
 # Функция вычисления пути в target
 # Будет возращать список to_be_visited отсортированный по возрастанию
 def path_to_target(cur_position, target_position, price_to_come):
-    to_be_visited = [target_position] # Индексы элементов, соответствующие индексам в prices, которые нужно посетить
+    to_be_visited = [target_position]
 
-    while cur_position != target_position: # Что если я заменю в этом усл. t_p на посл. эл. to_be_visited?
+    while cur_position != target_position:
         for j in range(k, 0, -1): # От самых дальних к ближним. 
-            if to_be_visited[-1] - j >= 0: # Если настолько удалённый элемент существует # ВОЗНИКАЕТ ОШИБКА, по мере приблежения к началу.
-                if prices[to_be_visited[-1] - j] + prices[target_position] == price_to_come[-1]: #Последний элемент price_to_come = результату перемещения в точку назначения из предшествующих элементов
+            if to_be_visited[-1] - j >= 0: # Если настолько удалённый элемент существует
+                if price_to_come[to_be_visited[-1] - j] + prices[target_position] == price_to_come[-1]: #TODO: -1 вместо target_position?
                     to_be_visited.append(target_position - j)
                     target_position = target_position - j
                     break
