@@ -26,4 +26,4 @@ for y in range(cur_position + k + 1, target_position + 1):
 	price_to_come[y - 1] = max(possible_prices)
 
 print(price_to_come)
-		
+
