@@ -12,7 +12,7 @@
 
 def grasshopper(n):
     grasshopper=[1, 0, 1] # База
-
+    
     for i in range(3, n+1): # n + 1 - чтобы включить n
         grasshopper.append(grasshopper[i-2] + grasshopper[i-3]) # Рек. формула. Значения сохраняются, что ускоряет работу программы
 
