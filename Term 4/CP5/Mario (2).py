@@ -8,14 +8,21 @@ import math
 # число прыжков Марио (= кол. посещённых столбиков)
 
 print("Введите кол. столбиков") # от 1 до ...
-n = int(input())
-
-
+'''n = int(input())'''
+n = 10000
+print("n = " + str(n))
+prices = []
+'''
 prices = []
 for i in range(n):
     print("Сколько монет (+ / -) на столбике " + str(i + 1) + " ?")
     prices.append(int(input()))
 # print(prices)
+'''
+
+for i in range(n + 1):
+    prices.append(1)
+
 
 print("Введитие максимальный прыжок") # от 1 до ...
 k = int(input())
