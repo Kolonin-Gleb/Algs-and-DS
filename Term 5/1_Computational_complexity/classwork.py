@@ -13,7 +13,7 @@
 '''
 
 #       0    1    2    3    4    5    6    7    8    9
-inp = ['R', 'R', 'L', 'L', 'L', 'R', 'L', 'L', 'L', 'R']
+inp = ['R', 'R', 'L', 'L', 'L', 'R', 'L', 'L', 'L', 'R'] # 
 # Должен быть выход:
 # С 2 по 4
 # С 6 по 8
@@ -30,4 +30,10 @@ for el_ind in range(len(inp)): # Иду по индексам, т.к. по ни�
         if len(indexes_for_command) == 2:
             print(f"С {indexes_for_command[0]} по {indexes_for_command[1]-1} меняй ногу!")
             indexes_for_command.clear()
+
+# TODO: Без повторения куска кода!
+
+if indexes_for_command: # Если не пустой - 
+    indexes_for_command.append(len(inp))
+    print(f"С {indexes_for_command[0]} по {indexes_for_command[1]-1} меняй ногу!")
 

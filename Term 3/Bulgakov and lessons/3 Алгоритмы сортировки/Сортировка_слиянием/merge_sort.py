@@ -7,14 +7,10 @@ def merge_sort(arr, first, last): # Декомпозирует с.д.
 
 
 def merge(arr, first, mid, last): # Собирает с.д.
-    
     return None # Возращаем новый массив, что мы сформировали
-
-    
 
 nums = [0, 4, 3, 2, 7, 8, 9, 6, 5, 1]
 
 merge_sort(nums)
-
 print(nums)
 
