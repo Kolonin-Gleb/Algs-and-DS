@@ -1,4 +1,11 @@
-# Первая строка – целые числа n, m и s через пробел
+'''
+Задача на динамическое программирование!
+
+План решения:
+1. Посмотреть моё решение задачи с кузнечиком и марио.
+2. Придумать алгоритм решения этой задачи на бумаге
+'''
+
 '''
 if s < n.top() and s < m.top() - give answer
 Резюме, которые забираю можно удалять из списков ??
@@ -29,13 +36,17 @@ for i in range(cv_max_count):
 # Замена всех '-' в меньшей стопке на math.inf
 smaller = n - m # 6 - 4
 
-if smaller == 0:
-    pass # Замены '-' производить не нужно
+if smaller == 0: # Замены '-' производить не нужно
+    lst_n = list(map(int, lst_n))
+    lst_m = list(map(int, lst_m))
 elif smaller > 0:
     lst_m = list(map(int, lst_m[:-smaller]))
     lst_m.extend([math.inf] * smaller)
+    lst_n = list(map(int, lst_n))
 elif smaller < 0:
-    lst_n[smaller:] = [math.inf] * (m - n)
+    lst_n = list(map(int, lst_m[:smaller]))
+    lst_n.extend([math.inf] * (m - n))
+    lst_m = list(map(int, lst_m))
 
 print(lst_m)
 print()
@@ -58,37 +69,4 @@ print(lst_n)
 6 5
 1 -
 7 -
-'''
-
-
-"""
-# Замену '-' можно оптимизировать потом
-if inp[0] == '-':
-    lst_n.append(math.inf)
-else:
-    lst_n.append(inp[0])
-if inp[1] == '-':
-    lst_m.append(math.inf)
-else:
-    lst_m.append(inp[1])
-
-cv_taken = 0
-
-# while s >= 
-
-print(cv_taken)
-"""
-
-
-# На первом шаге всегда берем наименьший.
-# Если одна из стопок полностью разобрана, а деньги остаются - берём из второй, пока есть возможность
-# -- Это можно реализовать замени все '-' на math.inf
-
-
-'''
-Мне кажется, что эта задача на динамическое программирование!
-
-План решения:
-1. Посмотреть моё решение задачи с кузнечиком и марио.
-2. Придумать алгоритм решения этой задачи на бумаге
 '''
