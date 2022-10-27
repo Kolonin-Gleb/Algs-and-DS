@@ -18,6 +18,7 @@ if s < n.top() and s < m.top() - give answer
 
 import math
 
+# s - бюджет
 n, m, s = map(int, input().split()) 
 
 # Списки с зарплатами в стопках резюме
@@ -70,3 +71,7 @@ print(lst_n)
 1 -
 7 -
 '''
+
+# Матрица возможных исходов
+matrix = []
+
