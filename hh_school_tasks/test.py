@@ -8,7 +8,7 @@
 
 lst_n = [100, 200, 300, 300, 100]
 lst_m = [500, 100, 100, 200, 100]
-s = 700 # 1000
+s = 1000 # 1000
 
 n = 5
 m = 5
@@ -32,8 +32,8 @@ for i in range(1, m+1):
 
 
 # output full matrix template
-# for row in matrix:
-#     print(row, sep='\n')
+for row in matrix:
+    print(row, sep='\n')
 
 # Определяю, в каком диапозоне матрицы имеет смысл вести поиск.
 # Т.е. в пределах каких строк и столбцов можно искать ответ с заданным бюджетом
@@ -50,30 +50,31 @@ for i in range(m+1):
     if s >= matrix[i][0]:
         i_max = i
 
-max_cv_collected = 0
 # Иду по строкам матрицы возможных исходов, 
 # чтобы определить макс. кол. резюме, что можно собрать
+max_cv_collected = 0
+# Для рассчёта стоимости взятия резюме, соответствующих индексам i j
+# Использую непосредственные стоимости этих резюме.
 
-for i in range(1, i_max+1):
+# Добавляю 0, чтобы размерности совпали с представлением матрицы
+lst_n.insert(0, 0) 
+lst_m.insert(0, 0) 
+
+
+# алгоритм рассчёта стоимости взятия резюме, соответствующих индексам i j
+for i in range(0, i_max+1):
     for j in range(1, j_max+1):
-        if s >= matrix[i][j-1] + matrix[i-1][j]: # Если купить это резюме можно
+        if s >= matrix[i][j-1] + lst_n[j]: # Если купить это резюме можно
             # Вычисляю стоимость взятия этого резюме
-            matrix[i][j] = matrix[i][j-1] + matrix[i-1][j] # эл. слева + эл. сверху
+            matrix[i][j] = matrix[i][j-1] + lst_n[j] # Стоимость взятия предыдущих + нового
             if i + j > max_cv_collected:
                 max_cv_collected = i + j
-
-# output matrix of possibilities
-for i in range(1, i_max+1):
-    for j in range(1, j_max+1):
-        print(matrix[i][j], end=' ')
-    print()
-
+        else:
+            break
+            
+print()
+# output full matrix template
+for row in matrix:
+    print(row, sep='\n')
 
 print(max_cv_collected)
-
-# Рассчёт матрицы возможных исходов
-# for i in range(i_max+1):
-#     for j in range(j_max+1):
-#         # sum
-        
-
