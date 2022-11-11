@@ -21,7 +21,7 @@ Dv = min(Dv, Du + Wuv)
 '''
 # Реализация
 
-def bellman_ford(nodes, edges, source_index=0):
+def bellman_ford(nodes: list, edges: dict, source_index=0):
     # Инициализация ребер. Расстояний между вершинами 
     path_lengths = {v: float('inf') for v in nodes}
     path_lengths[source_index] = 0
