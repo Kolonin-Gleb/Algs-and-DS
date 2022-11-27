@@ -92,7 +92,7 @@ edges = {(0, 1): 1.0, (1, 0): 1.0, (0, 2): 1.5, (2, 0): 1.5,
         (5, 3): -4.5}
 
 # Вывод
-shortest_path_lengths, shortest_paths = bellman_ford(nodes, edges, 0)
+shortest_path_lengths, shortest_paths = bellman_ford(nodes, edges, 4)
 print("Найкратчайшие пути из заданной вершины во все остальные: ")
 print(shortest_path_lengths) # Путь в 3 вершину - минимальный = 1.0
 print("Вершины, лежащие в кратчайших путях")
@@ -100,6 +100,8 @@ print(shortest_paths) # Путь лежит через вершины 0, 1, 4, 5
 '''
 
 '''
+'''
+
 # 3. Граф с отрицательным циклом
 nodes = [0, 1, 2, 3, 4, 5] # Названия вершин
 # Матрица смежности
@@ -115,5 +117,3 @@ print("Найкратчайшие пути из заданной вершины 
 print(shortest_path_lengths) # Путь в 3 вершину - минимальный = 1.0
 print("Вершины, лежащие в кратчайших путях")
 print(shortest_paths) # Путь лежит через вершины 0, 1, 4, 5, 3
-'''
-
